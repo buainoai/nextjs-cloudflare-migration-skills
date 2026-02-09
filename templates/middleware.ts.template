@@ -1,0 +1,42 @@
+import { NextResponse } from 'next/server';
+import type { NextRequest } from 'next/server';
+
+export function middleware(request: NextRequest) {
+  // Add your custom middleware logic here
+  
+  // Example 1: Redirect based on path
+  // if (request.nextUrl.pathname === '/old-path') {
+  //   return NextResponse.redirect(new URL('/new-path', request.url));
+  // }
+  
+  // Example 2: Rewrite API requests to external service
+  // if (request.nextUrl.pathname.startsWith('/api/external')) {
+  //   return NextResponse.rewrite(new URL(request.nextUrl.pathname.replace('/api/external', ''), 'https://api.example.com'));
+  // }
+  
+  // Example 3: Add custom headers
+  // const response = NextResponse.next();
+  // response.headers.set('X-Custom-Header', 'value');
+  // return response;
+  
+  // Example 4: Authentication check
+  // const token = request.cookies.get('token');
+  // if (!token && request.nextUrl.pathname.startsWith('/protected')) {
+  //   return NextResponse.redirect(new URL('/login', request.url));
+  // }
+  
+  return NextResponse.next();
+}
+
+// Configure which paths the middleware should run on
+export const config = {
+  matcher: [
+    /*
+     * Match all request paths except for the ones starting with:
+     * - _next/static (static files)
+     * - _next/image (image optimization files)
+     * - favicon.ico (favicon file)
+     */
+    '/((?!_next/static|_next/image|favicon.ico).*)',
+  ],
+};

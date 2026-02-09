@@ -1,0 +1,30 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "main": ".open-next/worker.js",
+  "name": "{{PROJECT_NAME}}",
+  "compatibility_date": "{{COMPATIBILITY_DATE}}",
+  "compatibility_flags": [
+    "nodejs_compat",
+    "global_fetch_strictly_public"
+  ],
+  "assets": {
+    "directory": ".open-next/assets",
+    "binding": "ASSETS"
+  },
+  "services": [
+    {
+      "binding": "WORKER_SELF_REFERENCE",
+      "service": "{{PROJECT_NAME}}"
+    }
+  ],
+  "r2_buckets": [
+    // Uncomment to enable R2 caching for ISR
+    // {
+    //   "binding": "NEXT_INC_CACHE_R2_BUCKET",
+    //   "bucket_name": "{{BUCKET_NAME}}"
+    // }
+  ],
+  "images": {
+    "binding": "IMAGES"
+  }
+}
