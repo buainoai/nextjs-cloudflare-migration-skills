@@ -49,7 +49,19 @@ This skill provides step-by-step guidance, configuration templates, and troubles
 
 ## Installation
 
-### For Manus AI Users
+### Quick Install (Recommended)
+
+Install this skill directly using the `bunx skills add` command:
+
+```bash
+bunx skills add https://github.com/buainoai/nextjs-cloudflare-migration-skills --skill nextjs-cloudflare-migration
+```
+
+Once installed, the skill will automatically activate in Manus AI when you work on Next.js to Cloudflare Workers migration tasks.
+
+### Alternative Installation Methods
+
+#### For Manus AI Users
 
 1. Download the skill file or clone this repository
 2. Add the skill to your Manus AI workspace
