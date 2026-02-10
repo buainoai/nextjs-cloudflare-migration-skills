@@ -1,10 +1,10 @@
-# Next.js to Cloudflare Workers Migration Skill
+# Next.js to Cloudflare Workers Migration Guide
 
-A comprehensive Manus AI skill for migrating Next.js 16 applications to Cloudflare Workers using the `@opennextjs/cloudflare` adapter.
+A comprehensive guide and toolkit for migrating Next.js 16 applications to Cloudflare Workers using the `@opennextjs/cloudflare` adapter.
 
 ## Overview
 
-This skill provides step-by-step guidance, configuration templates, and troubleshooting resources for deploying Next.js 16 applications on Cloudflare Workers. It covers the complete migration workflow from dependency installation to production deployment.
+This repository provides step-by-step guidance, configuration templates, and troubleshooting resources for deploying Next.js 16 applications on Cloudflare Workers. It covers the complete migration workflow from dependency installation to production deployment.
 
 ## Features
 
@@ -47,35 +47,6 @@ This skill provides step-by-step guidance, configuration templates, and troubles
   5. A/B Testing
   6. Rate Limiting
 
-## Installation
-
-### Quick Install (Recommended)
-
-Install this skill directly using the `bunx skills add` command:
-
-```bash
-bunx skills add https://github.com/buainoai/nextjs-cloudflare-migration-skills --skill nextjs-cloudflare-migration
-```
-
-Once installed, the skill will automatically activate in Manus AI when you work on Next.js to Cloudflare Workers migration tasks.
-
-### Alternative Installation Methods
-
-#### For Manus AI Users
-
-1. Download the skill file or clone this repository
-2. Add the skill to your Manus AI workspace
-3. The skill will automatically activate when you mention Next.js to Cloudflare migration
-
-### Manual Usage
-
-You can also use the templates and references directly without Manus AI:
-
-1. Clone this repository
-2. Copy the relevant templates to your Next.js project
-3. Follow the migration workflow in `SKILL.md`
-4. Refer to the reference documents as needed
-
 ## Quick Start
 
 ### Prerequisites
@@ -93,15 +64,40 @@ You can also use the templates and references directly without Manus AI:
    npm install --save-dev wrangler@latest
    ```
 
-2. **Copy configuration templates** to your project root
+2. **Copy configuration templates** to your project root:
+   ```bash
+   # Copy the templates from this repository
+   cp templates/wrangler.jsonc.template your-project/wrangler.jsonc
+   cp templates/open-next.config.ts.template your-project/open-next.config.ts
+   cp templates/middleware.ts.template your-project/middleware.ts  # Optional
+   ```
 
 3. **Update `next.config.mjs`**:
    ```javascript
    import { initOpenNextCloudflareForDev } from "@opennextjs/cloudflare";
    initOpenNextCloudflareForDev();
+   
+   const nextConfig = {
+     // Your existing configuration
+   };
+   
+   export default nextConfig;
    ```
 
-4. **Add deployment scripts** to `package.json`
+4. **Add deployment scripts** to `package.json`:
+   ```json
+   {
+     "scripts": {
+       "dev": "next dev",
+       "build": "next build",
+       "open:build": "opennextjs-cloudflare build",
+       "preview": "opennextjs-cloudflare build && opennextjs-cloudflare preview",
+       "deploy": "opennextjs-cloudflare build && opennextjs-cloudflare deploy",
+       "upload": "opennextjs-cloudflare build && opennextjs-cloudflare upload",
+       "cf-typegen": "wrangler types --env-interface CloudflareEnv cloudflare-env.d.ts"
+     }
+   }
+   ```
 
 5. **Test locally**:
    ```bash
@@ -113,7 +109,7 @@ You can also use the templates and references directly without Manus AI:
    npm run deploy
    ```
 
-For detailed instructions, see `SKILL.md`.
+For detailed instructions, see [GUIDE.md](./GUIDE.md).
 
 ## Supported Features
 
@@ -137,7 +133,7 @@ For detailed instructions, see `SKILL.md`.
 
 ## Documentation
 
-- [SKILL.md](./SKILL.md) - Complete skill documentation
+- [GUIDE.md](./GUIDE.md) - Complete migration guide
 - [Configuration Reference](./references/configuration-reference.md)
 - [Middleware Patterns](./references/middleware-patterns.md)
 - [Troubleshooting Guide](./references/troubleshooting.md)
@@ -154,10 +150,4 @@ Contributions are welcome! Please feel free to submit issues or pull requests.
 
 ## License
 
-MIT License - feel free to use this skill in your projects.
-
-## About Manus AI Skills
-
-Manus AI Skills are modular packages that extend Manus's capabilities with specialized knowledge and workflows. This skill provides domain-specific expertise for Next.js to Cloudflare Workers migrations.
-
-Learn more about Manus AI at [manus.im](https://manus.im)
+MIT License - feel free to use this guide in your projects.

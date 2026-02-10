@@ -1,15 +1,11 @@
----
-name: nextjs-cloudflare-migration
-description: Migrate Next.js 16 applications to Cloudflare Workers using @opennextjs/cloudflare. Use for setting up project configuration, implementing middleware for routing/proxying, configuring deployment scripts, and troubleshooting migration issues.
----
 
 # Next.js to Cloudflare Workers Migration
 
 Migrate Next.js 16 applications to Cloudflare Workers using the `@opennextjs/cloudflare` adapter.
 
-## When to Use This Skill
+## When to Use This Guide
 
-Use this skill when:
+Use this guide when:
 - Migrating an existing Next.js 16 project to Cloudflare Workers
 - Setting up middleware for custom routing, proxying, or request handling
 - Configuring Wrangler, OpenNext, and Next.js for Cloudflare deployment
